@@ -4,12 +4,12 @@ $db = connectDB();
 if(isset($_POST['sign-up-button'])){
 	//Se envio el formulario
 	//print_r($_POST);
-	$name = $POST['name'];
-	$email= $POST['email'];
-	$username= $POST['username'];
-	$pass= $POST['pass'];
-	//$repeatPass= $POST['repeat-Pass'];
-	//$rememberMe= $POST['remember-Me'];
+	$name = $_POST["name"];
+	$email= $_POST["email"];
+	$username= $_POST["username"];
+	$pass= $_POST["pass"];
+	//$repeatPass= $_POST['repeat-Pass'];
+	//$rememberMe= $_POST['remember-Me'];
 	$sql = "INSERT INTO users 
 		(full_name, email, user_name, password)
 		VALUES
