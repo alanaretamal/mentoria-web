@@ -4,4 +4,4 @@ session_start();
 
 $_SESSION["valido"] = 1;
 
-echo "sesion creeda!!";
+echo "sesion creada!!";

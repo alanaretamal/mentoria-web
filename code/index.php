@@ -1,4 +1,6 @@
 <?php
+
+// PDO 
 require "util/db.php";
 $db = connectDB();
 if(isset($_POST['sign-up-button'])){
@@ -27,9 +29,8 @@ if(isset($_POST['sign-up-button'])){
 
 	echo "Registro realizado con exito";
 }
-else{
-	echo "Sin envio !";
-}
+
+$valido=1;
 
 ?>
 <!DOCTYPE html>
@@ -74,7 +75,15 @@ else{
 					<span class="login100-form-title p-b-59">
 						Sign Up
 					</span>
-
+					<?php if ($valido == 1):?>
+					<p>Este es un texto controlado desde php</p>
+					<?php endif;?>
+					<?php
+					if($valido == 1)
+					{
+						echo '<p>Este es un texto generado desde php</p>';
+					}
+					?>
 					<div class="wrap-input100 validate-input" data-validate="Name is required">
 						<span class="label-input100">Full Name</span>
 						<input class="input100" type="text" name="name" placeholder="Name...">
