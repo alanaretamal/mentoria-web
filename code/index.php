@@ -84,7 +84,7 @@ if(isset($_POST['sign-up-button'])){
 					</span>
 					
 					<?php if($valido == 1):?>
-					<p class="msg-form"><?= echo $message;?></p>
+					<p class="msg-form"><?= $message;?></p>
 					<?php endif;?>
  
 					<div class="wrap-input100 validate-input" data-validate="Name is required">
