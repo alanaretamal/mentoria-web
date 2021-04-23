@@ -28,8 +28,7 @@ if (isset($_POST['sign-up-button'])) {
 	$stmt->bindParam(':full_name', $name);
 	$stmt->bindParam(':email', $email);
 	$stmt->bindParam(':user_name', $username);
-	$stmt->bindParam(':password', password_hash($pass, PASSWORD_DEFAULT));
-   
+	$stmt->bindParam(':password', $password);
 
 	$stmt->execute();
 
