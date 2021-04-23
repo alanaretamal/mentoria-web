@@ -113,7 +113,7 @@ if(isset($_POST['sign-up-button'])){
 
 					<div class="wrap-input100 validate-input" data-validate = "Repeat Password is required">
 						<span class="label-input100">Repeat Password</span>
-						<input class="input100" type="text" name="repeat-pass" placeholder="*************">
+						<input class="input100" type="password" name="repeat-pass" placeholder="*************">
 						<span class="focus-input100"></span>
 					</div>
 
