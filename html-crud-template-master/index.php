@@ -1,3 +1,8 @@
+<?php
+require "util/conected.php";
+$db=connectDB();
+?>
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
