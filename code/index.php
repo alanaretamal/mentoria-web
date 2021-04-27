@@ -4,7 +4,7 @@
     $db=connectDB();
 
     
-      $consultaSQL = "SELECT * FROM users";
+    $consultaSQL = "SELECT * FROM users";
   
 
     $sentencia = $db->prepare($consultaSQL);
@@ -78,11 +78,11 @@
                   foreach ($users as $fila):
                 ?>
                 <tr>
-                    <td><?php  $fila["id"] ?></td>
-                    <td><?php  $fila["user_name"] ?></td>
-                    <td><?php  $fila["full_name"] ?></td>
-                    <td><?php  $fila["email"] ?></td>
-                    <td><?php  $fila["password"] ?></td>
+                    <td><?php  $fila['id'] ?></td>
+                    <td><?php  $fila['user_name'] ?></td>
+                    <td><?php  $fila['full_name'] ?></td>
+                    <td><?php  $fila['email'] ?></td>
+                    <td><?php  $fila['password'] ?></td>
                     <td>
                         <a href="view.html"><button class="btn btn-primary btn-sm">View</button></a>
                         <a href="edit.html"><button class="btn btn-outline-primary btn-sm">✏️Editar</button></a>
