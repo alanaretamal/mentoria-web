@@ -3,14 +3,14 @@
                 $valido = 0;
 
             if(isset($_POST["sign-up-button"])){
-                $id = $_POST['id'];
+                $id = $_GET['id'];
                 $user_name = $_POST['user_name'];
                 $full_name = $_POST['full_name'];
                 $email = $_POST['email'];            
                 $sql = "INSERT INTO users 
-                            (id, user_name, full_name, email)
+                            (user_name, full_name, email)
                         VALUES
-                            (:id, :user_name, :full_name, :email)";
+                            (:user_name, :full_name, :email)";
             
                 //statement
                 $stmt = $db->prepare($sql);
@@ -151,7 +151,7 @@ if (isset($resultado)) {
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="form-control">
                 </div>
-                div class="container-login100-form-btn">
+                <div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" name="sign-up-button">
