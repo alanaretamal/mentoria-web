@@ -4,40 +4,41 @@ if (isset($_POST['submit'])) {
     'error' => false,
     'mensaje' => 'El alumno ' . $_POST['nombre'] . ' ha sido agregado con éxito' 
   ];
-  $config = include 'util/db.php';
-
+  require "util/db.php";
+  $db = connectDB();
   try {
-    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass']);
+      //preparar consulta
+      $sql = "SELECT * FROM  users(nombre, id, full_name, email)";
+      $stmt = $db->prepare($sql);
+      $stmt->execute();
 
-    $usuarios = array(
-      "nombre usuario"   => $_POST['nombre'],
-      "Id" => $_POST['id'],
-      "Nombre completo"    => $_POST['full_name'],
-      "Email"     => $_POST['email'],
-    );
-    $consultaSQL = "INSERT INTO alumnos (nombre, id, full_name, email)";
-    $consultaSQL .= "values (:" . implode(", :", array_keys($usuarios)) . ")";
-    $sentencia = $conexion->prepare($consultaSQL);
-    $sentencia->execute($usuarios);
+      // set the resulting array to associative
+      $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      foreach ($result = $stmt->fetchAll() as $data) {
+          
+      
+            $data['user_name'];
+            $data['id'] ;
+            $data['full_name'] ;
+            $data['email'] ;
+      }
 
   } catch(PDOException $error) {
-    $resultado['error'] = true;
-    $resultado['mensaje'] = $error->getMessage();
+    $result['error'] = true;
+    $result['mensaje'] = $error->getMessage();
   }
 }
 ?>
-
 <?php include "templates/header.php"; ?>
 
 <?php
-if (isset($resultado)) {
+if (isset($result)) {
   ?>
   <div class="container mt-3">
     <div class="row">
       <div class="col-md-12">
-        <div class="alert alert-<?= $resultado['error'] ? 'danger' : 'success' ?>" role="alert">
-          <?= $resultado['mensaje'] ?>
+        <div class="alert alert-<?= $result['error'] ? 'danger' : 'success' ?>" role="alert">
+          <?= $result['mensaje'] ?>
         </div>
       </div>
     </div>
@@ -45,9 +46,6 @@ if (isset($resultado)) {
   <?php
 }
 ?>
-
-
-
 
 <!doctype html>
 <html lang="en" class="h-100">
