@@ -1,3 +1,3 @@
-# Tutorial CRUD de neoguias.com
+# HTML CRUD TEMPLATE
 
-[Tutorial CRUD PHP en neoguias](https://www.neoguias.com/tutorial-crud-php/)
+Basic HTML template for CRUD using Bootstrap 4 framework.

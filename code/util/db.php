@@ -1,13 +1,15 @@
-CREATE DATABASE users;
+<?php
+function connectDB()
+{
+    $dbname = "registro";
+    $dbuser = "registro-user";
+    $dbpassword = "admin123";
 
-use users;
-
-CREATE TABLE users (
-  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  user_name VARCHAR(30) NOT NULL,
-  full_name VARCHAR(30) NOT NULL,
-  password VARCHAR(50) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    try{
+        $dsn = "mysql:host=localhost;dbname=$dbname";
+        $db = new PDO($dsn,$dbuser,$dbpassword);
+        return $db;
+    } catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
