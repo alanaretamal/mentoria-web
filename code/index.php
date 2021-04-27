@@ -1,141 +1,109 @@
-<!doctype html>
-<html lang="en" class="h-100">
+<?php
+include 'funciones.php';
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+csrf();
+if (isset($_POST['submit']) && !hash_equals($_SESSION['csrf'], $_POST['csrf'])) {
+  die();
+}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+$error = false;
+$config = include 'config.php';
 
-    <title>Lista de Usuarios</title>
+try {
+  $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+  $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
-</head>
+  if (isset($_POST['apellido'])) {
+    $consultaSQL = "SELECT * FROM alumnos WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
+  } else {
+    $consultaSQL = "SELECT * FROM alumnos";
+  }
 
-<body class="d-flex flex-column h-100">
+  $sentencia = $conexion->prepare($consultaSQL);
+  $sentencia->execute();
 
-    <div class="container pt-4 pb-4">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-            <a class="navbar-brand" href="#">HTML CRUD Template</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  $alumnos = $sentencia->fetchAll();
 
-            <div class="collapse navbar-collapse" id="navbarsExample09">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="create.php">Create</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://pisyek.com/contact">Help</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-md-0">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                </form>
-            </div>
-        </nav>
+} catch(PDOException $error) {
+  $error= $error->getMessage();
+}
+
+$titulo = isset($_POST['apellido']) ? 'Lista de alumnos (' . $_POST['apellido'] . ')' : 'Lista de alumnos';
+?>
+
+<?php include "templates/header.php"; ?>
+
+<?php
+if ($error) {
+  ?>
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert">
+          <?= $error ?>
+        </div>
+      </div>
     </div>
+  </div>
+  <?php
+}
+?>
 
-    <main role="main" class="flex-shrink-0">
-        <div class="container">
-            <h1>Lista de Usuarios</h1>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Full Namme</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-
-
-                <?php
-                // echo "<table style='border: solid 1px black;'>";
-                // echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
-
-                class TableRows extends RecursiveIteratorIterator
-                {
-                    function __construct($it)
-                    {
-                        parent::__construct($it, self::LEAVES_ONLY);
-                    }
-
-                    function beginChildren()
-                    {
-                        echo "<tr>";
-                    }
-
-                    function endChildren()
-                    {
-                        echo "</tr>" . "\n";
-                    }
-                }
-
-                require "util/db.php";
-                $db = connectDB();
-
-                try {
-
-                    //preparar consulta
-                    $sql = "SELECT * FROM  users ";
-                    $stmt = $db->prepare($sql);
-                    $stmt->execute();
-
-                    // set the resulting array to associative
-                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    foreach ($result = $stmt->fetchAll() as $data) {
-                        echo '<tr>';
-
-                        echo '<td >' . $data['id'] . '</td>';
-                        echo '<td >' . $data['full_name'] . '</td>';
-                        echo '<td >' . $data['email'] . '</td>';
-                        echo '<td >' . $data['user_name'] . '</td>';
-
-                        echo '<td>
-                                <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
-                                <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
-                                <button class="btn btn-sm">Delete</button>
-                            </td>';
-
-                        echo ' </tr>';
-                    }
-
-                } catch (PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
-                $conn = null;
-                echo "</table>";
-                ?>
-
-            </table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <a href="crear.php"  class="btn btn-primary mt-4">Crear alumno</a>
+      <hr>
+      <form method="post" class="form-inline">
+        <div class="form-group mr-3">
+          <input type="text" id="apellido" name="apellido" placeholder="Buscar por apellido" class="form-control">
         </div>
-    </main>
+        <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">
+        <button type="submit" name="submit" class="btn btn-primary">Ver resultados</button>
+      </form>
+    </div>
+  </div>
+</div>
 
-    <footer class="footer mt-auto py-3">
-        <div class="container pb-5">
-            <hr>
-            <span class="text-muted">
-                Copyright &copy; 2019 | <a href="https://pisyek.com">Pisyek.com</a>
-            </span>
-        </div>
-    </footer>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="mt-3"><?= $titulo ?></h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Edad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          if ($alumnos && $sentencia->rowCount() > 0) {
+            foreach ($alumnos as $fila) {
+              ?>
+              <tr>
+                <td><?php echo escapar($fila["id"]); ?></td>
+                <td><?php echo escapar($fila["nombre"]); ?></td>
+                <td><?php echo escapar($fila["apellido"]); ?></td>
+                <td><?php echo escapar($fila["email"]); ?></td>
+                <td><?php echo escapar($fila["edad"]); ?></td>
+                <td>
+                  <a href="<?= 'borrar.php?id=' . escapar($fila["id"]) ?>">🗑️Borrar</a>
+                  <a href="<?= 'editar.php?id=' . escapar($fila["id"]) ?>">✏️Editar</a>
+                </td>
+              </tr>
+              <?php
+            }
+          }
+          ?>
+        <tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+<?php include "templates/footer.php"; ?>
