@@ -79,8 +79,7 @@
             <form action="../../form-result.php" method="post" target="_blank">
                 <div class="form-group">
                     <label for="name">Nombre de usuario</label>
-                    <input type="text" name="user_name"  pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$" title="Un nombre de usuario apropiado debe comenzar con una letra, contener letras, números, guiones bajos y puntos, y tener entre 3 y 15 caracteres de longitud" required></input>
-                    <input type="text" disable="disable" id="user_name" name="user_name" value=<?php echo $data['user_name']; ?> >
+                    <input type="text" disable="disable" id="user_name" name="user_name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$" title="Un nombre de usuario apropiado debe comenzar con una letra, contener letras, números, guiones bajos y puntos, y tener entre 3 y 15 caracteres de longitud" value=<?php echo $data['user_name']; ?> required>
                 </div>
                 <button type="submit">Enviar</button>
                 <button type="submit" formmethod="get" formnovalidate>Enviar sin validación</button>
