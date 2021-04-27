@@ -1,8 +1,8 @@
 <?php
                 require "util/db.php";
                 $valido = 0;
-                
-            if(isset($_POST["crear"])){
+
+            if(isset($_POST["sign-up-button"])){
                 $id = $_POST['id'];
                 $user_name = $_POST['user_name'];
                 $full_name = $_POST['full_name'];
@@ -152,7 +152,9 @@ if (isset($resultado)) {
                 <input type="email" name="email" id="email" class="form-control">
                 </div>
                 <div class="form-group">
-                <input type="submit" name="submit" class="btn btn-primary" value="Enviar">
+                <button class="login100-form-btn" name="sign-up-button">
+								crear
+							</button>
                 <a class="btn btn-primary" href="index.php">Regresar al inicio</a>
                 </div>
             </form>
