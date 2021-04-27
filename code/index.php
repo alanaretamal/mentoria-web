@@ -1,18 +1,8 @@
 <?php
-include 'funciones.php';
-
-csrf();
-if (isset($_POST['submit']) && !hash_equals($_SESSION['csrf'], $_POST['csrf'])) {
-  die();
-}
-
-$error = false;
-$config = include 'config.php';
-
 try {
-  $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['registro'];
-  $conexion = new PDO($dsn, $config['db']['user'], $config['db']['password']);
-  
+  $dsn = 'mysql:host=localhost;dbname=registro';
+  $conexion = new PDO($dsn,'registro-user','admin123');
+
   if (isset($_POST['full_name'])) {
     $consultaSQL = "SELECT * FROM users WHERE full_name LIKE '%" . $_POST['full_name'] . "%'";
   } else {
@@ -58,7 +48,6 @@ if ($error) {
         <div class="form-group mr-3">
           <input type="text" id="full_name" name="full_name" placeholder="Buscar por nombre " class="form-control">
         </div>
-        <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">
         <button type="submit" name="submit" class="btn btn-primary">Ver resultados</button>
       </form>
     </div>
@@ -86,14 +75,14 @@ if ($error) {
             foreach ($users as $fila) {
               ?>
               <tr>
-                <td><?php echo escapar($fila["id"]); ?></td>
-                <td><?php echo escapar($fila["user_name"]); ?></td>
-                <td><?php echo escapar($fila["full_name"]); ?></td>
-                <td><?php echo escapar($fila["email"]); ?></td>
-                <td><?php echo escapar($fila["password"]); ?></td>
+                <td><?php echo ($fila["id"]); ?></td>
+                <td><?php echo ($fila["user_name"]); ?></td>
+                <td><?php echo ($fila["full_name"]); ?></td>
+                <td><?php echo ($fila["email"]); ?></td>
+                <td><?php echo ($fila["password"]); ?></td>
                 <td>
-                  <a href="<?= 'borrar.php?id=' . escapar($fila["id"]) ?>">🗑️Borrar</a>
-                  <a href="<?= 'editar.php?id=' . escapar($fila["id"]) ?>">✏️Editar</a>
+                  <a href="<?= 'borrar.php?id=' . ($fila["id"]) ?>">🗑️Borrar</a>
+                  <a href="<?= 'editar.php?id=' . ($fila["id"]) ?>">✏️Editar</a>
                 </td>
               </tr>
               <?php

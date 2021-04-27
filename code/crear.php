@@ -1,55 +1,36 @@
 <?php
+try {
+  $dsn = 'mysql:host=localhost;dbname=registro';
+  $conexion = new PDO($dsn,'registro-user','admin123');
 
-include 'funciones.php';
-
-csrf();
-if (isset($_POST['submit']) && !hash_equals($_SESSION['csrf'], $_POST['csrf'])) {
-  die();
-}
-
-if (isset($_POST['submit'])) {
-  $resultado = [
-    'error' => false,
-    'mensaje' => 'El usuario ' . escapar($_POST['name']) . ' ha sido agregado con éxito'
-  ];
-
-  $config = include 'config.php';
-
-  try {
-    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['registro'];
-    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['password']);
- 
-    $users = [
-      "id"        => $_GET['id'],
-      "user_name"   => $_POST['user_name'],
-      "full_name" => $_POST['full_name'],
-      "email"    => $_POST['email'],
-      "password"     => $_POST['password'],
-    ];
-
-    $consultaSQL = "INSERT INTO users (user_name, full_name, email, password)";
-    $consultaSQL .= "values (:" . implode(", :", array_keys($users)) . ")";
-
-    $sentencia = $conexion->prepare($consultaSQL);
-    $sentencia->execute($users);
-
-  } catch(PDOException $error) {
-    $resultado['error'] = true;
-    $resultado['mensaje'] = $error->getMessage();
+  if (isset($_POST['full_name'])) {
+    $consultaSQL = "SELECT * FROM users WHERE full_name LIKE '%" . $_POST['full_name'] . "%'";
+  } else {
+    $consultaSQL = "SELECT * FROM users";
   }
+
+  $sentencia = $conexion->prepare($consultaSQL);
+  $sentencia->execute();
+
+  $users = $sentencia->fetchAll();
+
+} catch(PDOException $error) {
+  $error= $error->getMessage();
 }
+
+$titulo = isset($_POST['full_name']) ? 'Lista de usuarios (' . $_POST['full_name'] . ')' : 'Lista de usuarios';
 ?>
 
-<?php include 'templates/header.php'; ?>
+<?php include "templates/header.php"; ?>
 
 <?php
-if (isset($resultado)) {
+if ($error) {
   ?>
-  <div class="container mt-3">
+  <div class="container mt-2">
     <div class="row">
       <div class="col-md-12">
-        <div class="alert alert-<?= $resultado['error'] ? 'danger' : 'success' ?>" role="alert">
-          <?= $resultado['mensaje'] ?>
+        <div class="alert alert-danger" role="alert">
+          <?= $error ?>
         </div>
       </div>
     </div>
@@ -57,6 +38,7 @@ if (isset($resultado)) {
   <?php
 }
 ?>
+
 
 <div class="container">
   <div class="row">
@@ -81,7 +63,6 @@ if (isset($resultado)) {
           <input type="text" name="password" id="password" class="form-control">
         </div>
         <div class="form-group">
-          <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">
           <input type="submit" name="submit" class="btn btn-primary" value="Enviar">
           <a class="btn btn-primary" href="index.php">Regresar al inicio</a>
         </div>

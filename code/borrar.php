@@ -1,30 +1,44 @@
 <?php
-include 'funciones.php';
-
-$config = include 'config.php';
-
-$resultado = [
-  'error' => false,
-  'mensaje' => ''
-];
-
 try {
-  $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['registro'];
-  $conexion = new PDO($dsn, $config['db']['user'], $config['db']['password']);
-    
-  $id = $_GET['id'];
-  $consultaSQL = "DELETE FROM users WHERE id =" . $id;
+  $dsn = 'mysql:host=localhost;dbname=registro';
+  $conexion = new PDO($dsn,'registro-user','admin123');
+
+  if (isset($_POST['full_name'])) {
+    $consultaSQL = "SELECT * FROM users WHERE full_name LIKE '%" . $_POST['full_name'] . "%'";
+  } else {
+    $consultaSQL = "SELECT * FROM users";
+  }
 
   $sentencia = $conexion->prepare($consultaSQL);
   $sentencia->execute();
 
-  header('Location: /index.php');
+  $users = $sentencia->fetchAll();
 
 } catch(PDOException $error) {
-  $resultado['error'] = true;
-  $resultado['mensaje'] = $error->getMessage();
+  $error= $error->getMessage();
+}
+
+$titulo = isset($_POST['full_name']) ? 'Lista de usuarios (' . $_POST['full_name'] . ')' : 'Lista de usuarios';
+?>
+
+<?php include "templates/header.php"; ?>
+
+<?php
+if ($error) {
+  ?>
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert">
+          <?= $error ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php
 }
 ?>
+
 
 <?php require "templates/header.php"; ?>
 
