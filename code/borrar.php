@@ -9,8 +9,8 @@ $resultado = [
 ];
 
 try {
-  $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-  $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+  $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['registro'];
+  $conexion = new PDO($dsn, $config['db']['user'], $config['db']['password']);
     
   $id = $_GET['id'];
   $consultaSQL = "DELETE FROM users WHERE id =" . $id;

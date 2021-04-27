@@ -20,9 +20,8 @@ if (!isset($_GET['id'])) {
 
 if (isset($_POST['submit'])) {
   try {
-    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['user_name'];
-    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-
+    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['registro'];
+    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['password']);
    
     $alumno = [
       "id"        => $_GET['id'],
@@ -49,9 +48,8 @@ if (isset($_POST['submit'])) {
 }
 
 try {
-  $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-  $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-    
+  $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['registro'];
+  $conexion = new PDO($dsn, $config['db']['user'], $config['db']['password']);  
   $id = $_GET['id'];
   $consultaSQL = "SELECT * FROM users WHERE id =" . $id;
 

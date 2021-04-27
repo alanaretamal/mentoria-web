@@ -16,11 +16,10 @@ if (isset($_POST['submit'])) {
   $config = include 'config.php';
 
   try {
-    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
-
+    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['registro'];
+    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['password']);
  
-    $alumno = [
+    $users = [
       "id"        => $_GET['id'],
       "user_name"   => $_POST['user_name'],
       "full_name" => $_POST['full_name'],

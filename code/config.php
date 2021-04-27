@@ -1,13 +1,15 @@
 <?php
+function connectDB()
+{
+    $dbname = "registro";
+    $dbuser = "registro-user";
+    $dbpassword = "admin123";
 
-return [
-  'db' => [
-    'host' => 'localhost',
-    'user' => 'registro-user',
-    'pass' => 'admin123',
-    'name' => 'users',
-    'options' => [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]
-  ]
-];
+    try{
+        $dsn = "mysql:host=localhost;dbname=$dbname";
+        $db = new PDO($dsn,$dbuser,$dbpassword);
+        return $db;
+    } catch(PDOException $e){
+        echo $e->getMessage();
+    }
+}
