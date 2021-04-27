@@ -2,43 +2,42 @@
 if (isset($_POST['submit'])) {
   $resultado = [
     'error' => false,
-    'mensaje' => 'El alumno ' . $_POST['nombre'] . ' ha sido agregado con éxito' 
+    'mensaje' => 'El usuario ' . $_POST['user_name'] . ' ha sido agregado con éxito' 
   ];
-  require "util/db.php";
-  $db = connectDB();
-  try {
-      //preparar consulta
-      $sql = "SELECT * FROM  users(nombre, id, full_name, email)";
-      $stmt = $db->prepare($sql);
-      $stmt->execute();
+  $config = include 'util/db.php';
 
-      // set the resulting array to associative
-      $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-      foreach ($result = $stmt->fetchAll() as $data) {
-          
-      
-            $data['user_name'];
-            $data['id'] ;
-            $data['full_name'] ;
-            $data['email'] ;
-      }
+  try {
+    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass']);
+
+    $usuarios = array(
+      "nombre usuario"   => $_POST['user_name'],
+      "Id" => $_POST['id'],
+      "Nombre completo"    => $_POST['full_name'],
+      "Email"     => $_POST['email'],
+    );
+    $consultaSQL = "INSERT INTO users(user_name,id,full_name,email)";
+    $consultaSQL .= "values (:" . implode(", :", array_keys($usuarios)) . ")";
+    $sentencia = $conexion->prepare($consultaSQL);
+    $sentencia->execute($usuarios);
 
   } catch(PDOException $error) {
-    $result['error'] = true;
-    $result['mensaje'] = $error->getMessage();
+    $resultado['error'] = true;
+    $resultado['mensaje'] = $error->getMessage();
   }
 }
 ?>
+
 <?php include "templates/header.php"; ?>
 
 <?php
-if (isset($result)) {
+if (isset($resultado)) {
   ?>
   <div class="container mt-3">
     <div class="row">
       <div class="col-md-12">
-        <div class="alert alert-<?= $result['error'] ? 'danger' : 'success' ?>" role="alert">
-          <?= $result['mensaje'] ?>
+        <div class="alert alert-<?= $resultado['error'] ? 'danger' : 'success' ?>" role="alert">
+          <?= $resultado['mensaje'] ?>
         </div>
       </div>
     </div>
@@ -46,6 +45,9 @@ if (isset($result)) {
   <?php
 }
 ?>
+
+
+
 
 <!doctype html>
 <html lang="en" class="h-100">
