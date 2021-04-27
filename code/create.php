@@ -1,4 +1,34 @@
 <?php
+                require "util/db.php";
+                $valido = 0;
+                
+            if(isset($_POST["crear"])){
+                $id = $_POST['id'];
+                $user_name = $_POST['user_name'];
+                $full_name = $_POST['full_name'];
+                $email = $_POST['email'];            
+                $sql = "INSERT INTO users 
+                            (id, user_name, full_name, email)
+                        VALUES
+                            (:id, :user_name, :full_name, :email)";
+            
+                //statement
+                $stmt = $db->prepare($sql);
+            
+                $stmt->bindParam(':id', $name);
+                $stmt->bindParam(':user_name', $user_name);
+                $stmt->bindParam(':full_name', $full_name);
+                $stmt->bindParam(':email', $email);
+            
+                $stmt->execute();
+            
+                $message = "Registro realizado con éxito";
+                $valido = 1;
+            } 
+            
+            ?>               
+
+<?php
 if (isset($_POST['submit'])) {
   $resultado = [
     'error' => false,
