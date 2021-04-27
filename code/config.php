@@ -5,7 +5,7 @@ return [
     'host' => 'localhost',
     'user' => 'registro-user',
     'pass' => 'admin123',
-    'name' => 'tutorial_crud',
+    'name' => 'users',
     'options' => [
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]

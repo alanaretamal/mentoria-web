@@ -1,6 +1,6 @@
-CREATE DATABASE tutorial_crud;
+CREATE DATABASE users;
 
-use tutorial_crud;
+use users;
 
 CREATE TABLE users (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
