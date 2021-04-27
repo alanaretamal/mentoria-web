@@ -96,6 +96,7 @@
                     <label for="email">Email
                      <input type="text" disabled="disabled" id="email" name="email" value=<?php echo   $data['email'] ; ?>>
                 </div>
+                <a class="btn btn-primary" href="index.php">Regresar al inicio</a>
             </form>
         </div>
     </main>   
