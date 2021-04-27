@@ -8,7 +8,7 @@ try {
   
   $conexion->exec($sql);
 
-  echo "La base de datos y la tabla de alumnos se han creado con éxito.";
+  echo "La base de datos y la tabla de usuarios se han creado con éxito.";
 } catch(PDOException $error) {
   echo $error->getMessage();
 }

@@ -15,31 +15,32 @@ $resultado = [
 
 if (!isset($_GET['id'])) {
   $resultado['error'] = true;
-  $resultado['mensaje'] = 'El alumno no existe';
+  $resultado['mensaje'] = 'El usuario no existe';
 }
 
 if (isset($_POST['submit'])) {
   try {
-    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['user_name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
+   
     $alumno = [
       "id"        => $_GET['id'],
-      "nombre"    => $_POST['nombre'],
-      "apellido"  => $_POST['apellido'],
-      "email"     => $_POST['email'],
-      "edad"      => $_POST['edad']
+      "user_name"   => $_POST['user_name'],
+      "full_name" => $_POST['full_name'],
+      "email"    => $_POST['email'],
+      "password"     => $_POST['password'],
     ];
     
-    $consultaSQL = "UPDATE alumnos SET
-        nombre = :nombre,
-        apellido = :apellido,
+    $consultaSQL = "UPDATE users SET
+        user_name = :user_name,
+        full_name = :full_name,
         email = :email,
-        edad = :edad,
+        password = :password,
         updated_at = NOW()
         WHERE id = :id";
     $consulta = $conexion->prepare($consultaSQL);
-    $consulta->execute($alumno);
+    $consulta->execute($users);
 
   } catch(PDOException $error) {
     $resultado['error'] = true;
@@ -52,7 +53,7 @@ try {
   $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
     
   $id = $_GET['id'];
-  $consultaSQL = "SELECT * FROM alumnos WHERE id =" . $id;
+  $consultaSQL = "SELECT * FROM users WHERE id =" . $id;
 
   $sentencia = $conexion->prepare($consultaSQL);
   $sentencia->execute();
@@ -61,7 +62,7 @@ try {
 
   if (!$alumno) {
     $resultado['error'] = true;
-    $resultado['mensaje'] = 'No se ha encontrado el alumno';
+    $resultado['mensaje'] = 'No se ha encontrado el usuario';
   }
 
 } catch(PDOException $error) {
@@ -95,7 +96,7 @@ if (isset($_POST['submit']) && !$resultado['error']) {
     <div class="row">
       <div class="col-md-12">
         <div class="alert alert-success" role="alert">
-          El alumno ha sido actualizado correctamente
+          El usuario ha sido actualizado correctamente
         </div>
       </div>
     </div>
@@ -105,29 +106,29 @@ if (isset($_POST['submit']) && !$resultado['error']) {
 ?>
 
 <?php
-if (isset($alumno) && $alumno) {
+if (isset($users) && $users) {
   ?>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="mt-4">Editando el alumno <?= escapar($alumno['nombre']) . ' ' . escapar($alumno['apellido'])  ?></h2>
+        <h2 class="mt-4">Editando el usuario <?= escapar($users['user_name']) . ' ' . escapar($users['full_name'])  ?></h2>
         <hr>
         <form method="post">
           <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" value="<?= escapar($alumno['nombre']) ?>" class="form-control">
+            <label for="user_name">Nombre de usuario</label>
+            <input type="text" name="user_name" id="user_name" value="<?= escapar($users['user_name']) ?>" class="form-control">
           </div>
           <div class="form-group">
-            <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" id="apellido" value="<?= escapar($alumno['apellido']) ?>" class="form-control">
+            <label for="apellido">Nombre completo</label>
+            <input type="text" name="full_name" id="full_name" value="<?= escapar($users['full_name']) ?>" class="form-control">
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="<?= escapar($alumno['email']) ?>" class="form-control">
+            <input type="email" name="email" id="email" value="<?= escapar($users['email']) ?>" class="form-control">
           </div>
           <div class="form-group">
-            <label for="edad">Edad</label>
-            <input type="text" name="edad" id="edad" value="<?= escapar($alumno['edad']) ?>" class="form-control">
+            <label for="edad">Password</label>
+            <input type="text" name="password" id="password" value="<?= escapar($users['password']) ?>" class="form-control">
           </div>
           <div class="form-group">
             <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">

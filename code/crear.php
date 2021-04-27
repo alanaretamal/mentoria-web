@@ -10,7 +10,7 @@ if (isset($_POST['submit']) && !hash_equals($_SESSION['csrf'], $_POST['csrf'])) 
 if (isset($_POST['submit'])) {
   $resultado = [
     'error' => false,
-    'mensaje' => 'El alumno ' . escapar($_POST['nombre']) . ' ha sido agregado con éxito'
+    'mensaje' => 'El usuario ' . escapar($_POST['name']) . ' ha sido agregado con éxito'
   ];
 
   $config = include 'config.php';
@@ -19,18 +19,20 @@ if (isset($_POST['submit'])) {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
+ 
     $alumno = [
-      "nombre"   => $_POST['nombre'],
-      "apellido" => $_POST['apellido'],
+      "id"        => $_GET['id'],
+      "user_name"   => $_POST['user_name'],
+      "full_name" => $_POST['full_name'],
       "email"    => $_POST['email'],
-      "edad"     => $_POST['edad'],
+      "password"     => $_POST['password'],
     ];
 
-    $consultaSQL = "INSERT INTO alumnos (nombre, apellido, email, edad)";
-    $consultaSQL .= "values (:" . implode(", :", array_keys($alumno)) . ")";
+    $consultaSQL = "INSERT INTO users (user_name, full_name, email, password)";
+    $consultaSQL .= "values (:" . implode(", :", array_keys($users)) . ")";
 
     $sentencia = $conexion->prepare($consultaSQL);
-    $sentencia->execute($alumno);
+    $sentencia->execute($users);
 
   } catch(PDOException $error) {
     $resultado['error'] = true;
@@ -60,24 +62,24 @@ if (isset($resultado)) {
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="mt-4">Crea un alumno</h2>
+      <h2 class="mt-4">Crea un Usuario</h2>
       <hr>
       <form method="post">
         <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" id="nombre" class="form-control">
+          <label for="nombre">Nombre usuario</label>
+          <input type="text" name="user_name" id="user_name" class="form-control">
         </div>
         <div class="form-group">
-          <label for="apellido">Apellido</label>
-          <input type="text" name="apellido" id="apellido" class="form-control">
+          <label for="apellido">Nombre completo</label>
+          <input type="text" name="full_name" id="full_name" class="form-control">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" name="email" id="email" class="form-control">
         </div>
         <div class="form-group">
-          <label for="edad">Edad</label>
-          <input type="text" name="edad" id="edad" class="form-control">
+          <label for="edad">Comtrasenna</label>
+          <input type="text" name="password" id="password" class="form-control">
         </div>
         <div class="form-group">
           <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">
