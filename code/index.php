@@ -78,15 +78,16 @@
                   foreach ($users as $fila):
                 ?>
                 <tr>
-                    <td><?php  $fila['id'] ?></td>
-                    <td><?php  $fila['user_name'] ?></td>
-                    <td><?php  $fila['full_name'] ?></td>
-                    <td><?php  $fila['email'] ?></td>
-                    <td><?php  $fila['password'] ?></td>
+                    <td><?=  $fila['id'] ?></td>
+                    <td><?=  $fila['user_name'] ?></td>
+                    <td><?=  $fila['full_name'] ?></td>
+                    <td><?=  $fila['email'] ?></td>
+                    <td><?=  $fila['password'] ?></td>
                     <td>
-                        <a href="view.html"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.html"><button class="btn btn-outline-primary btn-sm">✏️Editar</button></a>
-                        <button class="btn btn-sm">🗑️Borrar</button>
+                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">✏️Editar</button></a>
+                        <a href="borrar.php"><button class="btn btn-outline-primary btn-sm">🗑️Borrar</button></a>
+                       
                     </td>
                     </tr>                   
                     </tr>
