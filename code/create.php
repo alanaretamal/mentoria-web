@@ -151,12 +151,20 @@ if (isset($resultado)) {
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="form-control">
                 </div>
-                <div class="form-group">
-                <button class="login100-form-btn" name="sign-up-button">
-								crear
+                div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" name="sign-up-button">
+								Sign Up
 							</button>
-                <a class="btn btn-primary" href="index.php">Regresar al inicio</a>
-                </div>
+
+						</div>
+
+						<a href="index.php" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+							Sign in
+							<i class="fa fa-long-arrow-right m-l-5"></i>
+						</a>
+					</div>
             </form>
             </div>
         </div>
