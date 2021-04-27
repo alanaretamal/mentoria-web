@@ -75,32 +75,57 @@
             </div>
         </nav>
     </div>
-   <main role="main" class="flex-shrink-0">
+    <style>
+		.msg-form {
+			margin: 1em;
+			color: #66bb6a;
+		}
+	</style>
+</head>
+<body style="background-color: #999999;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
 
-   <div class="container">
-        <div class="row">
-        <h1>Usuarios</h1>
-            <div class="col-md-12">
-            <h2 class="mt-4">Crear Usuario</h2>
-            <hr>
-            <form method="post">
-                <div class="form-group">
-                <label for="nombre">Nombre de usuario</label>
-                <input type="text" name="user_name" id="user_name" class="form-control">
-                </div>
-                <div class="form-group">
-                <label for="nombre">Nombre Completo</label>
-                <input type="text" name="full_name" id="full_name" class="form-control">
-                </div>
-                <div class="form-group">
-                <label for="Id">Id</label>
-                <input type="text" name="Id" id="Id" class="form-control">
-                </div>
-                <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control">
-                </div>
-                <div class="container-login100-form-btn">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+				<form class="login100-form validate-form" method="POST" action="create.php">
+					<input type="hidden" name="super-secreto" value="valor super secreto">
+					<span class="login100-form-title p-b-59">
+						Sign Up
+					</span>
+
+					<?php if ($valido == 1): ?>
+						<p class="msg-form"><?= $message; ?></p>
+					<?php endif; ?>
+
+					<div class="wrap-input100 validate-input" data-validate="Nombre completo requerido">
+						<span class="label-input100">Nombre completo</span>
+						<input class="input100" type="text" name="full_name" placeholder="Nombre completo...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Validar email, ejemplo: ex@abc.xyz">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="email" placeholder="Email...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Nombre de usuario requerido">
+						<span class="label-input100">Nombre de usuario</span>
+						<input class="input100" type="text" name="user_name" placeholder="Nombre de usuario...">
+						<span class="focus-input100"></span>
+					</div>
+
+				
+					<div class="wrap-input100 validate-input" data-validate = "Id requerido">
+						<span class="label-input100">Id</span>
+						<input class="input100" type="number" name="Id" placeholder="">
+						<span class="focus-input100"></span>
+					</div>
+
+					
+					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" name="sign-up-button">
@@ -114,11 +139,11 @@
 							<i class="fa fa-long-arrow-right m-l-5"></i>
 						</a>
 					</div>
-            </form>
-            </div>
-        </div>
-        </div>
-    </main>   
+				</form>
+			</div>
+		</div>
+	</div>
+
     <footer class="footer mt-auto py-3">
         <div class="container pb-5">
             <hr>
