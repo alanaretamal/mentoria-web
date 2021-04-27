@@ -81,11 +81,17 @@
             <h1>Usuarios</h1>
             <form action="../../form-result.php" method="post" target="_blank">
                 <div class="form-group">
-                    <label for="name">Nombre de usuario</label>
+                    <label for="name">Nombre de usuario
                     <input type="text" disabled="disabled" id="user_name" name="user_name" value=<?php echo $data['user_name']; ?>>
+                    </label>
+                    <label for="id">Id
                     <input type="text" disabled="disabled" id="id" name="id" value=<?php echo $data['id'] ; ?>>
+                    </label>
+                    <label for="full_name">Nombre completo
                     <input type="text" disabled="disabled" id="full_name" name="full_name" value=<?php echo  $data['full_name'] ; ?>>
-                    <input type="text" disabled="disabled" id="email" name="email" value=<?php echo   $data['email'] ; ?>>
+                    </label>
+                    <label for="email">Email
+                     <input type="text" disabled="disabled" id="email" name="email" value=<?php echo   $data['email'] ; ?>>
                 </div>
             </form>
         </div>
