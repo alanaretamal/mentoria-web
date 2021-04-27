@@ -4,74 +4,84 @@ try {
   $dsn = 'mysql:host=localhost;dbname=registro';
   $conexion = new PDO($dsn,'registro-user','admin123');
 
-  if (isset($_POST['full_name'])) {
-    $consultaSQL = "SELECT * FROM users WHERE full_name LIKE '%" . $_POST['full_name'] . "%'";
-  } else {
-    $consultaSQL = "SELECT * FROM users";
-  }
-
-  $sentencia = $conexion->prepare($consultaSQL);
-  $sentencia->execute();
-
-  $users = $sentencia->fetchAll();
+  $alumno = [
+    "id"        => $_GET['id'],
+    "nombre"    => $_POST['nombre'],
+    "apellido"  => $_POST['apellido'],
+    "email"     => $_POST['email'],
+    "edad"      => $_POST['edad']
+  ];
+  
+  $consultaSQL = "UPDATE alumnos SET
+      nombre = :nombre,
+      apellido = :apellido,
+      email = :email,
+      edad = :edad,
+      updated_at = NOW()
+      WHERE id = :id";
+  $consulta = $conexion->prepare($consultaSQL);
+  $consulta->execute($alumno);
 
 } catch(PDOException $error) {
-  $error= $error->getMessage();
+  $resultado['error'] = true;
+  $resultado['mensaje'] = $error->getMessage();
 }
 
-$titulo = isset($_POST['full_name']) ? 'Lista de usuarios (' . $_POST['full_name'] . ')' : 'Lista de usuarios';
-?>
 
-<?php include "templates/header.php"; ?>
+try {
+$dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+$conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+  
+$id = $_GET['id'];
+$consultaSQL = "SELECT * FROM alumnos WHERE id =" . $id;
 
-<?php
-if ($error) {
-  ?>
-  <div class="container mt-2">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="alert alert-danger" role="alert">
-          <?= $error ?>
-        </div>
-      </div>
-    </div>
-  </div>
-  <?php
+$sentencia = $conexion->prepare($consultaSQL);
+$sentencia->execute();
+
+$alumno = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+if (!$alumno) {
+  $resultado['error'] = true;
+  $resultado['mensaje'] = 'No se ha encontrado el alumno';
+}
+
+} catch(PDOException $error) {
+$resultado['error'] = true;
+$resultado['mensaje'] = $error->getMessage();
 }
 ?>
-
 
 <?php require "templates/header.php"; ?>
 
 <?php
 if ($resultado['error']) {
-  ?>
-  <div class="container mt-2">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="alert alert-danger" role="alert">
-          <?= $resultado['mensaje'] ?>
-        </div>
+?>
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-danger" role="alert">
+        <?= $resultado['mensaje'] ?>
       </div>
     </div>
   </div>
-  <?php
+</div>
+<?php
 }
 ?>
 
 <?php
 if (isset($_POST['submit']) && !$resultado['error']) {
-  ?>
-  <div class="container mt-2">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="alert alert-success" role="alert">
-          El usuario ha sido actualizado correctamente
-        </div>
+?>
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success" role="alert">
+        El alumno ha sido actualizado correctamente
       </div>
     </div>
   </div>
-  <?php
+</div>
+<?php
 }
 ?>
 
