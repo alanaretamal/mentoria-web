@@ -58,6 +58,24 @@
         </div>
     </main>
       
+
+    <form action="../../form-result.php" method="post" target="_blank">
+
+<p>Usuario: <input type="text" name="user_name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$" title="Un nombre de usuario apropiado debe comenzar con una letra, contener letras, números, guiones bajos y puntos, y tener entre 3 y 15 caracteres de longitud" required></p>
+<p>
+
+  <button type="submit">Enviar</button>
+
+  <button type="submit" formmethod="get" formnovalidate>Enviar sin validación</button>
+
+</p>
+
+</form>
+
+
+
+
+
     <footer class="footer mt-auto py-3">
         <div class="container pb-5">
             <hr>
