@@ -46,45 +46,21 @@
         </nav>
     </div>
 
-          
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <h1>Editar usuario</h1>
             <form action="../../form-result.php" method="post" target="_blank">
                 <div class="form-group">
                     <label for="name">Nombre de usuario</label>
-                    <input type="text" name="user_name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$" title="Un nombre de usuario apropiado debe comenzar con una letra, contener letras, números, guiones bajos y puntos, y tener entre 3 y 15 caracteres de longitud" required></input>
+                    <input type="text" name="user_name"  pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$" title="Un nombre de usuario apropiado debe comenzar con una letra, contener letras, números, guiones bajos y puntos, y tener entre 3 y 15 caracteres de longitud" required></input>
                    
                 </div>
                 <button type="submit">Enviar</button>
                 <button type="submit" formmethod="get" formnovalidate>Enviar sin validación</button>
-            </form>
-        </div>
-    </main>
-      
+            
+
 
                 <?php
-                // echo "<table style='border: solid 1px black;'>";
-                // echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
-
-                class TableRows extends RecursiveIteratorIterator
-                {
-                    function __construct($it)
-                    {
-                        parent::__construct($it, self::LEAVES_ONLY);
-                    }
-
-                    function beginChildren()
-                    {
-                        echo "<tr>";
-                    }
-
-                    function endChildren()
-                    {
-                        echo "</tr>" . "\n";
-                    }
-                }
-
                 require "util/db.php";
                 $db = connectDB();
 
@@ -98,33 +74,21 @@
                     // set the resulting array to associative
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                     foreach ($result = $stmt->fetchAll() as $data) {
-                        echo '<tr>';
-
-                        echo '<td >' . $data['id'] . '</td>';
-                        echo '<td >' . $data['full_name'] . '</td>';
-                        echo '<td >' . $data['email'] . '</td>';
-                        echo '<td >' . $data['user_name'] . '</td>';
-
-                        echo '<td>
-                                <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
-                                <a href="edit.php"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
-                                <button class="btn btn-sm">Delete</button>
-                            </td>';
-
-                        echo ' </tr>';
+                        
+                         $data['id'];
+                         $data['full_name'];
+                         $data['email'];
+                         $data['user_name'];
                     }
 
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
                 }
-                $conn = null;
-                echo "</table>";
                 ?>
-
-            </table>
+            </form>
         </div>
-    </main>
-
+    </main>   
+    
     <footer class="footer mt-auto py-3">
         <div class="container pb-5">
             <hr>
@@ -141,4 +105,5 @@
 </body>
 
 </html>
-  
+     
+    
