@@ -46,35 +46,19 @@
         
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h1>Edit User</h1>
-            <form action="" method="POST">
+            <h1>Editar usuario</h1>
+            <form action="../../form-result.php" method="post" target="_blank">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" value="" placeholder="Enter name">
-                    <small class="form-text text-muted">Help message here.</small>
+                    <label for="name">Nombre de usuario</label>
+                    <input type="text" name="user_name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$" title="Un nombre de usuario apropiado debe comenzar con una letra, contener letras, números, guiones bajos y puntos, y tener entre 3 y 15 caracteres de longitud" required></input>
+                   
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit">Enviar</button>
+                <button type="submit" formmethod="get" formnovalidate>Enviar sin validación</button>
             </form>
         </div>
     </main>
       
-
-    <form action="../../form-result.php" method="post" target="_blank">
-
-<p>Usuario: <input type="text" name="user_name" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,15}$" title="Un nombre de usuario apropiado debe comenzar con una letra, contener letras, números, guiones bajos y puntos, y tener entre 3 y 15 caracteres de longitud" required></p>
-<p>
-
-  <button type="submit">Enviar</button>
-
-  <button type="submit" formmethod="get" formnovalidate>Enviar sin validación</button>
-
-</p>
-
-</form>
-
-
-
-
 
     <footer class="footer mt-auto py-3">
         <div class="container pb-5">
