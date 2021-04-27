@@ -78,7 +78,7 @@ if (isset($resultado)) {
           <input type="email" name="email" id="email" class="form-control">
         </div>
         <div class="form-group">
-          <label for="edad">Comtrasenna</label>
+          <label for="edad">Contrasena</label>
           <input type="text" name="password" id="password" class="form-control">
         </div>
         <div class="form-group">
