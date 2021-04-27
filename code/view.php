@@ -84,12 +84,15 @@
                     <label for="name">Nombre de usuario
                     <input type="text" disabled="disabled" id="user_name" name="user_name" value=<?php echo $data['user_name']; ?>>
                     </label>
+                    <br>
                     <label for="id">Id
                     <input type="text" disabled="disabled" id="id" name="id" value=<?php echo $data['id'] ; ?>>
                     </label>
+                    <br>
                     <label for="full_name">Nombre completo
                     <input type="text" disabled="disabled" id="full_name" name="full_name" value=<?php echo  $data['full_name'] ; ?>>
                     </label>
+                    <br>
                     <label for="email">Email
                      <input type="text" disabled="disabled" id="email" name="email" value=<?php echo   $data['email'] ; ?>>
                 </div>
