@@ -69,7 +69,6 @@
                     <th scope="col">Nombre Usuario</th>
                     <th scope="col">Nombre completo</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Password</th>
                     <th scope="col">Acciones</th>
                 </tr>
                 </thead>
@@ -82,9 +81,8 @@
                     <td><?=  $fila['user_name'] ?></td>
                     <td><?=  $fila['full_name'] ?></td>
                     <td><?=  $fila['email'] ?></td>
-                    <td><?=  $fila['password'] ?></td>
                     <td>
-                        <a href="view.php"><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="view.php?id=<?= $fila['id']?>"><button class="btn btn-primary btn-sm">View</button></a>
                         <a href="edit.php"><button class="btn btn-outline-primary btn-sm">✏️Editar</button></a>
                         <a href="borrar.php"><button class="btn btn-outline-primary btn-sm">🗑️Borrar</button></a>
                        

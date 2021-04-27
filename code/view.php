@@ -1,3 +1,20 @@
+<?php
+
+    require "util/db.php";
+    $db=connectDB();
+
+    $id=$_GET['id'];
+    $consultaSQL = "SELECT * FROM users where id=:id";
+  
+
+    $sentencia = $db->prepare($consultaSQL);
+    $sentencia-> bindParam(':id',$id);
+    $sentencia->execute();
+
+    $datos = $sentencia->fetch();
+    
+  ?>
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -46,9 +63,11 @@
         
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h1>View User Detail</h1>
-            <p>Name: Pisyek</p>
-            <p>Email: pisyek@gmail.com</p>
+            <h1>Detalle</h1>
+            <p>Nombre usuario: <?=$datos['user_name']?> </p>
+            <p>Email:<?=$datos['email']?> </p>
+            <p>Nombre completo:<?=$datos['full_name']?> </p>
+            <p>Id:<?=$datos['id']?> </p>
         </div>
     </main>
       
