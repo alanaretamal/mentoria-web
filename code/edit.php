@@ -69,7 +69,6 @@
                           $data['id'] ;
                           $data['full_name'] ;
                           $data['email'] ;
-                          $data['user_name'] ;
                     }
 
                 } catch (PDOException $e) {

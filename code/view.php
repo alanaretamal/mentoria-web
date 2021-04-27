@@ -69,7 +69,6 @@
                           $data['id'] ;
                           $data['full_name'] ;
                           $data['email'] ;
-                          $data['user_name'] ;
                     }
 
                 } catch (PDOException $e) {
@@ -84,6 +83,9 @@
                 <div class="form-group">
                     <label for="name">Nombre de usuario</label>
                     <input type="text" disabled="disabled" id="user_name" name="user_name" value=<?php echo $data['user_name']; ?>>
+                    <input type="text" disabled="disabled" id="id" name="id" value=<?php echo $data['id'] ; ?>>
+                    <input type="text" disabled="disabled" id="full_name" name="full_name" value=<?php echo  $data['full_name'] ; ?>>
+                    <input type="text" disabled="disabled" id="email" name="email" value=<?php echo   $data['email'] ; ?>>
                 </div>
             </form>
         </div>
