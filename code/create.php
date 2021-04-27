@@ -28,57 +28,6 @@
             
             ?>               
 
-<?php
-if (isset($_POST['submit'])) {
-  $resultado = [
-    'error' => false,
-    'mensaje' => 'El usuario ' . $_POST['user_name'] . ' ha sido agregado con éxito' 
-  ];
-  $config = include 'util/db.php';
-
-  try {
-    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
-    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass']);
-
-    $usuarios = array(
-      "nombre usuario"   => $_POST['user_name'],
-      "Id" => $_POST['id'],
-      "Nombre completo"    => $_POST['full_name'],
-      "Email"     => $_POST['email'],
-    );
-    $consultaSQL = "INSERT INTO users(user_name,id,full_name,email)";
-    $consultaSQL .= "values (:" . implode(", :", array_keys($usuarios)) . ")";
-    $sentencia = $conexion->prepare($consultaSQL);
-    $sentencia->execute($usuarios);
-
-  } catch(PDOException $error) {
-    $resultado['error'] = true;
-    $resultado['mensaje'] = $error->getMessage();
-  }
-}
-?>
-
-<?php include "templates/header.php"; ?>
-
-<?php
-if (isset($resultado)) {
-  ?>
-  <div class="container mt-3">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="alert alert-<?= $resultado['error'] ? 'danger' : 'success' ?>" role="alert">
-          <?= $resultado['mensaje'] ?>
-        </div>
-      </div>
-    </div>
-    </div>
-  <?php
-}
-?>
-
-
-
-
 <!doctype html>
 <html lang="en" class="h-100">
 
