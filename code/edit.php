@@ -3,42 +3,17 @@
     require "util/db.php";
     $db=connectDB();
 
-   
-    if(isset($_POST["actualizar"])){
-        $id=$_GET["id"];        
-        $user_name=$_POST["user_name"];
-        $full_name=$_POST["full_name"];
-        $email=$_POST["email"];
-    
-    $consultaSQL = "UPDATE * FROM users SET full_name=:full_name, user_name=:user_name,email=:email where id=:id";
- 
-    $sentencia = $db->prepare($consultaSQL);
-    $sentencia->bindParam(':user_name', $user_name);
-    $sentencia->bindParam(':email', $email);    
-    $sentencia->bindParam(':full_name', $full_name);
-    $sentencia->bindParam(':id', $id);
+    $id=$_GET['id'];
+    $consultaSQL = "SELECT * FROM users where id=:id";
   
+
+    $sentencia = $db->prepare($consultaSQL);
+    $sentencia-> bindParam(':id',$id);
     $sentencia->execute();
 
-   echo "Actualizado";
+    $datos = $sentencia->fetch();
 
-}   else{
-    echo "No se ha enviado la información";
-}
   ?>
-<!doctype html>
-<html lang="en" class="h-100">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-
-    
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
