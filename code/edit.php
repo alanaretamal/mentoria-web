@@ -62,13 +62,31 @@
         
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h1>Detalle</h1>
-            <p>Nombre usuario: <?=$datos['user_name']?> </p>
-            <p>Email:<?=$datos['email']?> </p>
-            <p>Nombre completo:<?=$datos['full_name']?> </p>
-            <p>Id:<?=$datos['id']?> </p>
+            <h1>Detalle</h1>           
+					<div class="wrap-input100 validate-input" data-validate="Name is required">
+						<span class="label-input100">Full Name</span>
+						<input class="input100" type="text" name="name" placeholder="Name...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="email" placeholder="Email addess...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Username is required">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Username...">
+						<span class="focus-input100"></span>
+					</div>
+                    <button class="actualizar" name="actualizar" value="submit">
+								actualizar
+					</button>
+
         </div>
     </main>
+
       
     <footer class="footer mt-auto py-3">
         <div class="container pb-5">
