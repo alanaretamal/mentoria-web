@@ -4,17 +4,16 @@
     $db=connectDB();
 
    
-    session_start();
     if(isset($_POST["actualizar"])){
         $id=$_GET["id"];        
-        $user_name=$_GET["user_name"];
+        $user_name=$_POST["user_name"];
         $full_name=$_POST["full_name"];
         $email=$_POST["email"];
     
-    $consultaSQL = "UPDATE * FROM users SET full_name=:full_name, user_name=:user_name,email=:email where ir=:id";
+    $consultaSQL = "UPDATE * FROM users SET full_name=:full_name, user_name=:user_name,email=:email where id=:id";
  
     $sentencia = $db->prepare($consultaSQL);
-    $sentencia->bindParam(':full_name', $full_name);
+    $sentencia->bindParam(':user_name', $user_name);
     $sentencia->bindParam(':email', $email);    
     $sentencia->bindParam(':full_name', $full_name);
     $sentencia->bindParam(':id', $id);
