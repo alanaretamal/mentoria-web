@@ -7,7 +7,7 @@
     session_start();
     if(isset($_POST["actualizar"])){
         $id=$_GET["id"];        
-        $user_name=$_POST["user_name"];
+        $user_name=$_GET["user_name"];
         $full_name=$_POST["full_name"];
         $email=$_POST["email"];
     
