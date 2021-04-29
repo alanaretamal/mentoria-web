@@ -1,3 +1,45 @@
+<?php
+
+    require "util/db.php";
+    $db=connectDB();
+
+   
+    session_start();
+    if(isset($_POST["actualizar"])){
+        $id=$_GET["id"];        
+        $user_name=$_POST["user_name"];
+        $full_name=$_POST["full_name"];
+        $email=$_POST["email"];
+    
+    $consultaSQL = "UPDATE * FROM users SET full_name=:full_name, user_name=:user_name,email=:email where ir=:id";
+ 
+    $sentencia = $db->prepare($consultaSQL);
+    $sentencia->bindParam(':full_name', $full_name);
+    $sentencia->bindParam(':email', $email);    
+    $sentencia->bindParam(':full_name', $full_name);
+    $sentencia->bindParam(':id', $id);
+  
+    $sentencia->execute();
+
+   echo "Actualizado";
+
+}   else{
+    echo "No se ha enviado la información";
+}
+  ?>
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+    
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -46,15 +88,11 @@
         
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h1>Edit User</h1>
-            <form action="" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" value="Nama saya Pisyek" placeholder="Enter name">
-                    <small class="form-text text-muted">Help message here.</small>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <h1>Detalle</h1>
+            <p>Nombre usuario: <?=$datos['user_name']?> </p>
+            <p>Email:<?=$datos['email']?> </p>
+            <p>Nombre completo:<?=$datos['full_name']?> </p>
+            <p>Id:<?=$datos['id']?> </p>
         </div>
     </main>
       
