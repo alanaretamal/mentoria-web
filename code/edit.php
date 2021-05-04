@@ -106,16 +106,16 @@ if (isset($_POST['send-button'])) {
             <h1>Editar Usuario</h1>
             <?php if ($valido == 1): ?>
 						<!-- <p class="msg-form"><?= $message; ?></p> -->
-                        <font color="red"><?= $message; ?></font>
+                        <font color="nlue"><?= $message; ?></font>
 					<?php endif; ?>
             <form action="edit.php" method="POST">
-            <div class="form-group">
+           <!--  <div class="form-group">
                     <?php
                     $rutaImagen = "upload/". $users['user_name'] .".jpg" ?? '0'.".jpg";
                     //echo $rutaImagen;
                     ?>
                     <img src="<?= $rutaImagen; ?>">
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label for="upload">Upload</label>

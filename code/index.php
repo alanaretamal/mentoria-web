@@ -83,7 +83,7 @@
                     <td><?=  $fila['email'] ?></td>
                     <td>
                         <a href="view.php?id=<?= $fila['id']?>"><button class="btn btn-primary btn-sm">View</button></a>
-                        <a href="edit.php?id=<?= $fila['id']?>"><button class="btn btn-outline-primary btn-sm">✏️Editar</button></a>
+                        <a href="edit.php"><button class="btn btn-outline-primary btn-sm">✏️Editar</button></a>
                         <a href="borrar.php?id=<?= $fila['id']?>"><button class="btn btn-outline-primary btn-sm">🗑️Borrar</button></a>
                       
                     </td>
