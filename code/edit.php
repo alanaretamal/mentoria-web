@@ -12,10 +12,9 @@ if (isset($_GET['id'])) {
     $sql = "SELECT id,full_name,user_name,email,password
     FROM users where id=$idregistro";
 
-    //statement
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
-    $users = $stmt->fetch();
+$stmt = $db->prepare($sql); 
+$stmt->execute(); 
+$users = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 if (isset($_POST['send-button'])) {
@@ -106,16 +105,16 @@ if (isset($_POST['send-button'])) {
             <h1>Editar Usuario</h1>
             <?php if ($valido == 1): ?>
 						<!-- <p class="msg-form"><?= $message; ?></p> -->
-                        <font color="nlue"><?= $message; ?></font>
+                        <font color="red"><?= $message; ?></font>
 					<?php endif; ?>
             <form action="edit.php" method="POST">
-           <!--  <div class="form-group">
+            <div class="form-group">
                     <?php
                     $rutaImagen = "upload/". $users['user_name'] .".jpg" ?? '0'.".jpg";
                     //echo $rutaImagen;
                     ?>
                     <img src="<?= $rutaImagen; ?>">
-                </div> -->
+                </div>
 
                 <div class="form-group">
                     <label for="upload">Upload</label>

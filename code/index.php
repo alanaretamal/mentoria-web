@@ -47,7 +47,7 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">Buscar</input>
+                <input class="form-control" type="text" placeholder="Search" aria-label="Buscar">
                 </form>
             </div>
         </nav>
@@ -55,7 +55,7 @@
         
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h1>Listas de Usuarios</h1>
+            <h1>Lista de Usuarios</h1>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
