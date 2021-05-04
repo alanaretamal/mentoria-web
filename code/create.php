@@ -39,11 +39,21 @@ if (isset($_POST["crear"])) {
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-
-    <title>Lista de usuarios</title>
    
+    <title>Crear Usuario</title>
+    <style>
+		.msg-form{
+			margin:1em;
+			color: red
+		}
+    </style>
   </head>
   <body class="d-flex flex-column h-100">
+    <!-- Implementa mensaje para Creación-->
+    <?php if (isset($msg)): ?>
+        <p class="msg-form"><?= $msg ?></p>
+     <?php endif; ?>
+     <!-------------->
     
     <div class="container pt-4 pb-4">
         <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
@@ -63,49 +73,6 @@ if (isset($_POST["crear"])) {
                 </ul>
                 <form class="form-inline my-2 my-md-0">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Buscar">
-                </form>
-            </div>
-        </nav>
-    </div>
-        
-    <title>List of User</title>
-    <style>
-		.msg-form{
-			margin:1em;
-			color: red
-		}
-    </style>
-  </head>
-  <body class="d-flex flex-column h-100">
-    <!-- Implementa mensaje para Creación-->
-    <?php if (isset($msg)): ?>
-        <p class="msg-form"><?= $msg ?></p>
-     <?php endif; ?>
-     <!-------------->
-    <div class="container pt-4 pb-4">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-            <a class="navbar-brand" href="#">HTML-PHP CRUD Template</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarsExample09">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="create.php">Create</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://pisyek.com/contact">Help</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
                 </form>
             </div>
         </nav>

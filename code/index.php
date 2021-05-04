@@ -24,17 +24,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <div class="form-group">
-                    <?php
-                    $rutaImagen = "upload/". $users['user_name'] .".jpg" ?? '0'.".jpg";
-                    //echo $rutaImagen;
-                    ?>
-                    <img src="<?= $rutaImagen; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="upload">Upload</label>
-                    <input type="file" class="form-control" name="imagen" id="upload">
-                </div>
+   
     <title>Lista de usuarios</title>
    
   </head>
