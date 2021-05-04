@@ -1,16 +1,16 @@
 <?php
 session_start();
-if(!isset($_SESSION['name'])){
+if(!isset($_SESSION['nombre'])){
     header("location:index.php");
 }
 require "util/db.php";
 $valido = 0;
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $idregistro = $_GET['id'];
     $db = connectDB();
 
     $sql = "SELECT id,full_name,user_name,email,password
-    FROM users where id=$id";
+    FROM users where id=$idregistro";
 
     //statement
     $stmt = $db->prepare($sql);
