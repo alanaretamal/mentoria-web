@@ -43,7 +43,7 @@
                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link"  href="edit.php?id=<?= $fila['id']?>">Create</a>
+                    <a class="nav-link"  href="create.php?id=<?= $fila['id']?>">Create</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">FAQ</a>
