@@ -1,8 +1,8 @@
 <?php
-session_start();
+/* session_start();
 if(!isset($_SESSION['nombre'])){
     header("location:index.php");
-}
+} */
 require "util/db.php";
 $valido = 0;
 if (isset($_GET['id'])) {
