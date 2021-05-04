@@ -126,7 +126,7 @@ if (isset($_POST['send-button'])) {
                     <input type="password" placeholder="*****"class="form-control" name="password" id="pass" value=<?= $users['password'] ?? 'ingrese password' ?> placeholder="Enter pass">
                     <!-- <small class="form-text text-muted">Help message here.</small> -->
                 </div>
-                <button type="submit" class="btn btn-primary" name="send-button">Submit</button>
+                <button type="submit" class="btn btn-primary" name="send-button">Editar</button>
             </form>
         </div>
     </main>
