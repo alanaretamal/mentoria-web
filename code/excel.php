@@ -1,27 +1,36 @@
+
 <?php
 
-require '../respaldo/vendor/autoload.php';
 require "util/db.php";
-
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 $db = connectDB();
 
-$sql = "SELECT * FROM id,full_name,user_name,email FROM users";
-$stmt = $db->prepare($sql);
+$sql = "SELECT * FROM users";
 
+//statement
+
+$stmt = $db->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+//Exportar a excel
+
+//require 'vendor/autoload.php';
+require '../respaldo/vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
+/*$sheet->setCellValue('A1', 'ID');
+$sheet->setCellValue('B1', 'FULL_NAME');
+$sheet->setCellValue('C1', 'EMAIL');
+$sheet->setCellValue('D1', 'USER');*/
+$sheet->setCellValueByColumnAndRow(1,1, 'ID');
+$sheet->setCellValueByColumnAndRow(2,1, 'FULL_NAME');
+$sheet->setCellValueByColumnAndRow(3,1, 'EMAIL');
+$sheet->setCellValueByColumnAndRow(4,1, 'USER');
 
-$sheet->setCellValueByColumnAndRow(1,1 ,'#');
-$sheet->setCellValueByColumnAndRow(1,2, 'Id');
-$sheet->setCellValueByColumnAndRow(3,1, 'Nombre');
-$sheet->setCellValueByColumnAndRow(4,1, 'Nombre Usuario');
-$sheet->setCellValueByColumnAndRow(5,1, 'Correo');
 
 foreach($users as $key => $user){
     $fil=$key + 2;
