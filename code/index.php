@@ -45,6 +45,9 @@
                     <li class="nav-item">
                     <a class="nav-link"  href="create.php?id=<?= $fila['id']?>">Crear</a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link"  href="excel.php?id">Descargar Excel</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-md-0">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Buscar">
@@ -53,6 +56,7 @@
         </nav>
     </div>
         
+    
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <h1>Lista de Usuarios</h1>
@@ -76,7 +80,7 @@
                     <td><?=  $fila['full_name'] ?></td>
                     <td><?=  $fila['email'] ?></td>
                     <td>
-                        <a href="view.php?id=<?= $fila['id']?>"><button class="btn btn-primary btn-sm">View</button></a>
+                        <a href="view.php?id=<?= $fila['id']?>"><button class="btn btn-primary btn-sm">Ver</button></a>
                         <a href="edit.php?id=<?= $fila['id']?>"><button class="btn btn-outline-primary btn-sm">✏️Editar</button></a>
                         <a href="borrar.php?id=<?= $fila['id']?>"><button class="btn btn-outline-primary btn-sm">🗑️Borrar</button></a>
                       
