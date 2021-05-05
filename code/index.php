@@ -46,7 +46,7 @@
                     <a class="nav-link"  href="create.php?id=<?= $fila['id']?>">Crear</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link"  href="excel.php?id">Descargar Excel</a>
+                    <a class="nav-link"  href="excel.php">Descargar Excel</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-md-0">

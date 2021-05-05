@@ -7,7 +7,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 $db = connectDB();
 
-$sql = "SELECT * FROM id,full_nmae,user_name,email FROM users";
+$sql = "SELECT * FROM id,full_name,user_name,email FROM users";
 $stmt = $db->prepare($sql);
 
 $stmt->execute();
