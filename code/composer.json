@@ -1,5 +1,10 @@
 {
     "name": "alana/php-mvcframework",
     "description": "alana",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
     "require": {}
 }
