@@ -1,10 +1,11 @@
 {
     "name": "alana/php-mvcframework",
     "description": "alana",
-    "autoload": {
-        "psr-4": {
-            "app\\": "./"
+    "authors": [
+        {
+            "name": "alana.retamal",
+            "email": "alana.retamal@segic.usach.cl"
         }
-    },
+    ],
     "require": {}
 }
