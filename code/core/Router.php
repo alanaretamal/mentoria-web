@@ -19,10 +19,10 @@ class Router
 
     public function resolve()
     {
-        /*echo '<pre>';
+        echo '<pre>';
         var_dump($_SERVER);
         echo '</pre>';
-        exit;*/
+        
 
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
