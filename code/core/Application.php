@@ -4,7 +4,8 @@ namespace app\core;
 
 class Application{
     public Router $router;
-    public   Request $request;
+    public Request $request;
+
     public function __construct()
     {
         $this->request = new Request();
@@ -15,4 +16,3 @@ class Application{
         $this->router->resolve();
     }
 }
-
