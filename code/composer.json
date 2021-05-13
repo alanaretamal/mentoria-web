@@ -1,11 +1,17 @@
 {
-    "name": "alana/php-mvcframework",
-    "description": "alana",
+    "name": "ivanvejar/phpmvc-framework",
+    "description": "Framework de prueba",
+    "autoload": {
+        "psr-4": {
+        "app\\": "./"
+        }
+   }, 
     "authors": [
         {
-            "name": "alana.retamal",
-            "email": "alana.retamal@segic.usach.cl"
+            "name": "Ivan Vejar",
+            "email": "ivan.vejar@segic.usach.cl"
         }
     ],
+
     "require": {}
 }

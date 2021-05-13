@@ -5,7 +5,7 @@ use app\core\Application;
 $app = new Application();
 
 $app->router->get('/', function(){
-    return "Hola Alana";
+    return "Hola Ivan Vejar";
 });
 
 $app->router->get('/contact', function(){

@@ -2,7 +2,8 @@
 
 namespace app\core;
 
-class Application{
+class Application
+{
     public Router $router;
     public Request $request;
 
@@ -12,7 +13,8 @@ class Application{
         $this->router = new Router($this->request);
     }
 
-    public function run(){
+    public function run()
+    {
         $this->router->resolve();
     }
 }
