@@ -1,5 +1,5 @@
 {
-    "name": "ivanvejar/phpmvc-framework",
+    "name": "alanaretamal/phpmvc-framework",
     "description": "Framework de prueba",
     "autoload": {
         "psr-4": {
@@ -8,8 +8,8 @@
    }, 
     "authors": [
         {
-            "name": "Ivan Vejar",
-            "email": "ivan.vejar@segic.usach.cl"
+            "name": "Alana Retamal",
+            "email": "alana.retamal@segic.usach.cl"
         }
     ],
 
