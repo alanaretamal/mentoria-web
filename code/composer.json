@@ -1,0 +1,17 @@
+{
+    "name": "ivanvejar/phpmvc-framework",
+    "description": "Framework de prueba",
+    "autoload": {
+        "psr-4": {
+        "app\\": "./"
+        }
+   }, 
+    "authors": [
+        {
+            "name": "Ivan Vejar",
+            "email": "ivan.vejar@segic.usach.cl"
+        }
+    ],
+
+    "require": {}
+}
