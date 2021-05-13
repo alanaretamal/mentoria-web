@@ -1,49 +1,28 @@
-
 <?php
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment; filename="Listado-Alumnos.xlsx"');
 
 require "util/db.php";
 $db = connectDB();
-
 $sql = "SELECT * FROM users";
-
 //statement
-
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//Exportar a excel
-
-//require 'vendor/autoload.php';
-require '../respaldo/vendor/autoload.php';
-
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
-$spreadsheet = new Spreadsheet();
-$sheet = $spreadsheet->getActiveSheet();
-/*$sheet->setCellValue('A1', 'ID');
-$sheet->setCellValue('B1', 'FULL_NAME');
-$sheet->setCellValue('C1', 'EMAIL');
-$sheet->setCellValue('D1', 'USER');*/
-$sheet->setCellValueByColumnAndRow(1,1, 'ID');
-$sheet->setCellValueByColumnAndRow(2,1, 'FULL_NAME');
-$sheet->setCellValueByColumnAndRow(3,1, 'EMAIL');
-$sheet->setCellValueByColumnAndRow(4,1, 'USER');
-
-
-foreach($users as $key => $user){
-    $fil=$key + 2;
-    $sheet->setCellValueByColumnAndRow(1,$fil,$key+1);
-    $sheet->setCellValue(2, $fil,$user['Id']);    
-    $sheet->setCellValue(3, $fil,$user['Full_name']);    
-    $sheet->setCellValue(4,$fil,$user['user_name']);    
-    $sheet->setCellValue(5, $fil,$user['email']);
-}
-
-$writer = new Xlsx($spreadsheet);
-header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment; filename="usuarios.xlsx"');
-$writer->save('php://output');
-
 ?>
+<table>
+<tr>
+    <th scope="col">Id</th>
+    <th scope="col">Full Namme</th>
+    <th scope="col">Email</th>
+    <th scope="col">User Name</th>
+</tr>
+<?php foreach ($users as $user) : ?>
+ <tr>
+    <td><?= $user['id'] ?></td>
+    <td><?= $user['full_name'] ?></td>
+    <td><?= $user['email'] ?></td>
+    <td><?= $user['user_name'] ?? 'Sin correo' ?></td>
+</tr>
+<?php endforeach; ?>
+</table>
