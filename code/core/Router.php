@@ -28,7 +28,7 @@ class Router
         $method = $this->request->getMethod();
 
         $callback = $this->routes[$method][$path] ?? false;
-
+        //Application::$app;
         if ($callback === false) {
             return "Not Found";
         }
