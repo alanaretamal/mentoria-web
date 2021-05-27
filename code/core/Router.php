@@ -47,10 +47,13 @@ class Router
         {
             return $this->renderView($callback);
         }
+
         if(is_array($callback)){
+            $bla = new $callback[0]();
             var_dump($callback);
             exit;
         }
+
         return call_user_func($callback);
     }
     public function renderContent($viewContent)
