@@ -1,1 +1,1 @@
-<h1>Hola Bienvenidos a Home</h1>
+<h1>Hola Bienvenidos</h1>
