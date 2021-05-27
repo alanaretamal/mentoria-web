@@ -49,9 +49,7 @@ class Router
         }
 
         if(is_array($callback)){
-            $bla = new $callback[0]();
-            var_dump($callback);
-            exit;
+            $callback[0] = new $callback[0]();
         }
 
         return call_user_func($callback);
