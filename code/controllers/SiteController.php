@@ -2,7 +2,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
-
+use app\core\Request;
 
 class SiteController extends Controller
 {
@@ -17,8 +17,12 @@ class SiteController extends Controller
     {
        return $this->render('contact');
     }
-    public function handlecontact()
+    public function handlecontact(Request $request)
     {
+      $body = $request->getBody();
+      var_dump($body);
+      exit;
+    
        return "Procesando Informacion";
     }
   
