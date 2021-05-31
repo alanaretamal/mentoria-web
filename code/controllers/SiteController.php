@@ -20,9 +20,7 @@ class SiteController extends Controller
     public function handlecontact(Request $request)
     {
       $body = $request->getBody();
-      var_dump($body);
-      exit;
-    
+   
        return "Procesando Informacion";
     }
   
