@@ -66,7 +66,7 @@ class Router{
 
     public function renderView($view, $params = []){
         //interpolacion
-        Application::$app->controller= $this->layoutContent();
+        $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
