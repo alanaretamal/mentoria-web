@@ -13,7 +13,10 @@ class AuthController extends Controller
   }
   public function register(Request $request)
   {
-    return $this->render('register');
+    if($request->getMethod() === 'post')
+    {
+        return "Procesando datos del formulario";
+    }
   }
 
 }
