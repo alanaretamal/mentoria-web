@@ -51,6 +51,7 @@ class Router{
             [1]=> string(4) "home" }*/
 
         if (is_array($callback)) {
+            Application::$app->controller= new $callback[0]();
             $callback[0] = new $callback[0]();
             //esto transforma el string a objeto            
         }
@@ -65,12 +66,13 @@ class Router{
 
     public function renderView($view, $params = []){
         //interpolacion
-        $layoutContent = $this->layoutContent();
+        Application::$app->controller= $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
     public function layoutContent(){
+        $layout = Application::$app->controller->layout;
         ob_start();
         include_once Application::$ROOT_DIR . "/views/layouts/main.php";
         return ob_get_clean();
