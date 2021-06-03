@@ -10,16 +10,15 @@ class AuthController extends Controller
 
   public function login()
   {
-      $this->setLayout('auth');
-    return     $this->render('login');
+    return $this->render('login');
+    
   }
   public function register(Request $request)
   {
-    $this->setLayout('auth');
-    if($request->isPost())
-    {
-        $registerModel = new RegisterModel();
-        return "Procesando datos del formulario";
+    
+    if($request->isPost()){
+      $registerModel = new RegisterModel();
+      return "Procesando datos del formulario";
     }
     return $this->render('register');
   }

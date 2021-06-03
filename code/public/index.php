@@ -1,6 +1,8 @@
 <?php 
+
 require_once __DIR__ . "/../vendor/autoload.php";
- use app\core\Application;
+
+use app\core\Application;
  $app = new Application(dirname(__DIR__)); 
  $app->router->get('/', [\app\controllers\SiteController::class, 'home']);
  $app->router->get('/contact', [\app\controllers\SiteController::class, 'contact']);
