@@ -22,7 +22,7 @@ class AuthController extends Controller
       $registerModel->loadData($request->getBody());
       
       var_dump($registerModel);
-      
+
       if(empty($registerModel->firstname))
       {
 
@@ -31,7 +31,7 @@ class AuthController extends Controller
       if($registerModel->validate() && $registerModel->save()){
         return 'Success';
       }
-      
+      var_dump($registerModel->errors);
       return "Procesando datos del formulario";
     }
     return $this->render('register');
