@@ -12,9 +12,9 @@ class Database{
         $username = $config['user'] ?? '';
         $password = $config['password'] ?? '';
 
-        echo $dsn;
-        echo $username;
-        echo $password;
+        //echo $dsn;
+        //echo $username;
+        //echo $password;
 
         $this->pdo = new \PDO($dsn, $username, $password);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -22,7 +22,29 @@ class Database{
 
     public function applyMigrations(){
         $this->createMigrationsTable();
+        
         $appliedMigrations = $this->getAppliedMigrations();
+       $files = scandir(Application::$ROOT_DIR . '/migrations');
+       $toApplyMigrations = array_diff($files, $appliedMigrations);
+       foreach($toApplyMigrations as $migration)
+       {
+           if($toApplyMigrations === '.' || $migration === '..'){
+               continue;
+           }
+           require_once Application::$ROOT_DIR . '/migrations/' . $migration;
+          $className = pathinfo($migration,PATHINFO_FILENAME);
+          $instance = new $className();
+          echo "Applying migration $migration\n";
+          $instance->up();
+          echo "Applied migration $migration\n";
+          $newMigrations[] = $migratipn;
+        }
+        if(!empty($newMigrations))
+        {
+            $this->saveMigrations($newMigrations);
+        }else{
+            echo "All migrations has been applied";
+        }
     }
     public function createMigrationsTable()
     {
@@ -35,5 +57,11 @@ class Database{
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
+    }
+    public function saveMigrations(array $newMigrations){
+      
+        $values = implode(',',  array_map(fn($m) => "('$m')",$newMigrations));
+        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES $values");
+        $statement->execute();
     }
 }

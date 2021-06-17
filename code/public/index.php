@@ -18,7 +18,7 @@ $config = [
  /*  echo _DIR_;         /var/www/systems/mentoria-web/eje_framework/public */
 /* echo dirname(_DIR_);  /var/www/systems/mentoria-web/eje_framework */
 
-var_dump($config);
+//var_dump($config);
 
 $app = new Application(dirname(__DIR__), $config);
 
