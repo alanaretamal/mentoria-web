@@ -31,7 +31,7 @@ class Database{
            if($toApplyMigrations === '.' || $migration === '..'){
                continue;
            }
-           require_once Application::$ROOT_DIR . '/migrations/' . $migration;
+           require_once Application::$ROOT_DIR . '/migrations/' . $migrations;
           $className = pathinfo($migration,PATHINFO_FILENAME);
           $instance = new $className();
           echo "Applying migration $migration\n";
