@@ -12,9 +12,9 @@ class Database{
         $username = $config['user'] ?? '';
         $password = $config['password'] ?? '';
 
-        echo $dsn;
-        echo $username;
-        echo $password;
+       // echo $dsn;
+       // echo $username;
+       // echo $password;
 
         $this->pdo = new \PDO($dsn, $username, $password);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
