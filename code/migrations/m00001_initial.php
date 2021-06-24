@@ -8,9 +8,9 @@ class m00001_initial
 
     $sql = "CREATE TABLE `users` (
     `id` int NOT NULL,
-    `full_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+    `firstname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+    `lastname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-    `user_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
     `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;";
   
