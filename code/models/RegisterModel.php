@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\core\DbModel;
-use app\core\Model;
+
 
 
 class RegisterModel extends DbModel
