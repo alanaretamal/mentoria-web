@@ -50,7 +50,7 @@ abstract class RegisterModel extends DbModel
         FROM INFORMATION_SCHEMA.COLUMNS 
         WHERE 
         TABLE_SCHEMA = Database()
-        AND TABLE_NAME = 'USERS' ";
+        AND TABLE_NAME = 'users' ";
         $statement = $this->pdo->prepare($sql);
         $statement->execute();
 
