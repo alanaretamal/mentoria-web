@@ -6,7 +6,7 @@ use app\core\DbModel;
 
 
 
-class RegisterModel extends DbModel
+abstract class RegisterModel extends DbModel
 {
     public string $firstname = '';
     public string $lastname = '';
@@ -34,13 +34,28 @@ class RegisterModel extends DbModel
             'confirmPassword' =>[self::RULE_REQUIRED, [self::RULE_MATCH,'match'=>'password']],
         ];
     }
-    public function attributes(): array
-    {
-        return[
-            'firstname',
-            'lastname',
-            'email' ,
-            'password',
-        ];
+    //public function attributes(): array
+    //{
+    //    return[
+    //        'firstname',
+    //        'lastname',
+    //        'email' ,
+    //        'password',
+    //    ];
+   // }
+  
+   public function attributes(): array
+   {
+        $sql = "SELECT COLUMN_NAME 
+        FROM INFORMATION_SCHEMA.COLUMNS 
+        WHERE 
+        TABLE_SCHEMA = Database()
+        AND TABLE_NAME = 'USERS' ";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_COLUMN);
+  
     }
+   
 }
