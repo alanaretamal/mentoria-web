@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Ejemplo_2</title>
+    <style>
+        .square{
+            width: 100px;
+            height: 100px;
+        }
+        
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="parentDiv">
+        <div id="squareDiv" class="square red"></div>
+        <button id="changeColorButton">Load Users</button>
+    </div>
+  <img id="imgLoad" src="" alt="">
+  <table>
+      <thead>
+          <tr>
+              <th>Nombre Completo</th>
+          </tr>
+      </thead>
+      <tbody id="userTable"></tbody>
+  </table>
+
+
+
+
+
+    <script>
+        //ejemplo de uso de DOM
+        //Event bubbling(burbujeo de eventos)
+        //Ajax
+        $('#changeColorButton').click(function(event){
+            $.getJSON("https://aws.random.cat/meow?ref=public-apis", function(data){
+                console.log(data);
+
+                let names= data.map((user) => user.firstname + " "+ user.lastname);
+                console.log(names);
+                names.forEach(name => {
+                    let trElement = "<tr><td>" + name + "</tr></td>";
+                    $('#userTable').append(trElement);
+                    $('#userTable > tr').click(function(){
+                        $(this)
+                        .fadeOut("slow",function(){
+                          $(this).remove();
+                        });
+                    });
+                });
+            });
+        });
+                /*  console.log(data);
+
+              $('#imgLoad')
+                .attr('src',data.file)      
+                .click(function(){
+                    $('#imgLoad').fadeOut("slow");
+                });   
+            });
+        });*/
+          /* if($('#squareDiv').hasClass('red')){
+           $('#squareDiv')
+           .removeClass('red')
+           .addClass('blue');
+           }else{
+            $('#squareDiv')
+           .removeClass('blue')
+           .addClass('red');
+
+           }
+           $('#squareDiv').fadeOut("slow",function(){
+            console.log('termino de desaparecer');
+           });
+             });
+        */
+
+        /*document
+            .getElementById('changeColorButton')
+            .addEventListener('click', function(event){
+                //event.stopPropagation();// permite que no se propague al padre
+                let divElement = document
+                        .getElementById('squareDiv');
+                
+                if (divElement.classList.contains('red')){
+                    divElement.classList.replace('red', 'blue');
+                }else{
+                    divElement.classList.replace('blue', 'red');
+                }
+                console.log(event);
+            });
+
+        document
+            .getElementById('parentDiv')
+            .addEventListener('click', function(event){
+                console.log('Yeah Baby');
+            });
+            */
+    </script>
+</body>
+</html>
