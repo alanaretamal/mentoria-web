@@ -9,4 +9,5 @@ class Post extends Model
 {
     // Traits
     use HasFactory;
+    public $guarded = ['id'];
 }
