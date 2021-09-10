@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-
     // Traits
     use HasFactory;
 
-    //public $fillable = ['title', 'resumen' , 'body'];
+    //public $fillable = ['title', 'resumen', 'body'];
+    public $guarded = ['id'];
 
-    protected $guarded = ['id'];
+    public function getRouteKeyName(){
+        return  'slug';
+    }
 
-    public function  getRouteKeyName(){
-        return 'slug';
+    public function category(){
+        return $this->belongsTo(category::class);
     }
 }
