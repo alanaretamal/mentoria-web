@@ -33,7 +33,3 @@ Route::get('/post/{post}', function( Post $post){
 });
      
 
-
-//Route::get('/', fn () => view ('welcome'));
-//Route::get('/', fn () => 'Hola Segic');
-//Route::get('/', fn () => ['id' => 7, 'url' => 'http://www.segic.cl']);
