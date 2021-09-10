@@ -23,13 +23,16 @@ Route::get('/', function () {
     ]);
 });
 
-
+Route::get('post/{post}',function(Post $post){
+    return view('post',[
+      'post' => $post,
+    ]);
+});
 //Route::get('/post/{post:slug}', function( Post $post){
 Route::get('/category/{category}', function( Category $category){
-    return 'categorias';
-   /*  view ('post', [
-        'post'=> $post,
-    ]); */
+    view ('posts', [
+        'posts'=> $category->posts,
+    ]); 
 });
      
 
