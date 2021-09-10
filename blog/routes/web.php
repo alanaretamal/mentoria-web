@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-   //$posts = cache()->rememberForever('posts.all',fn () =>Post::all());
+   \Illuminate\Support\Facades\DB::listen(function($query){
+             logger($query->sql);
+   });
    $posts = Post::all();
    return view('posts', [
      'posts' => $posts
@@ -29,7 +31,7 @@ Route::get('post/{post}',function(Post $post){
     ]);
 });
 //Route::get('/post/{post:slug}', function( Post $post){
-Route::get('/category/{category}', function( Category $category){
+Route::get('/category/{category:slug}', function( Category $category){
     view ('posts', [
         'posts'=> $category->posts,
     ]); 
