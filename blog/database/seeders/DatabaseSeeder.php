@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Category;
 
+use App\Models\Post;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,8 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create();
-       Category::create([
+        User::truncate();
+        Category::truncate();
+
+       $user= User::factory()->create();
+       $personal =Category::create([
            'name' =>'Personal',
            'slug' => 'personal'
        ]);
@@ -27,6 +32,14 @@ class DatabaseSeeder extends Seeder
     Category::create([
         'name' =>'Hobbies',
         'slug' => 'Hobbies'
+    ]);
+    Post::create([
+        'category'=> '',
+        'user_id'=>'',
+        'slug'=>'my-first-post',
+        'title' => 'My First Post',
+        'resumen' =>'There are many variations of passages of Lorem Ipsum',
+        'body'=>'There are many variations of Lorem Ipsum',
     ]);
     }
 }
