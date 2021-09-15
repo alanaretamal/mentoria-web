@@ -10,20 +10,21 @@
         @foreach ($posts as $post)
             <article>
                 <h1>
-                    <a href="/post/<?= $post->slug?>">
-                        {{ $post->title }}
+                    <a href="/post/<?= $post->slug ?>">
+                        {{ $post->title }} 
                     </a>
                 </h1>
                 <p>
-                    By<a href="a">Juan Perez</a>
-                    <a href="/category/{{$post->category->slug}}" >
+                    By <a href="#">Alana Retamal</a>  In
+                    <a href="/category/{{$post->category->slug}}">
                         {{$post->category->name}}
-                     </a>
+                    </a>
                 </p>
-                <p><?= $post->resumen ?></p>
+                <p><?= $post->resumen ?></p>+
             </article>
         @endforeach
     @else
         I don't have any posts!
-    @endif 
+    @endif
+
 @endsection

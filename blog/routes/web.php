@@ -3,6 +3,9 @@
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
+//use Illuminate\Support\Facades\File;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,26 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
-   \Illuminate\Support\Facades\DB::listen(function($query){
-             logger($query->sql, $query->bindings);
-   });
-   return view('posts', [
-     'posts' => Post::with('category')->get()
+    \Illuminate\Support\Facades\DB::listen(function ($query) {
+        logger($query->sql, $query->bindings);
+    });
+
+    return view('posts', [
+        'posts' => Post::with('category')->get()
     ]);
 });
 
-Route::get('post/{post}',function(Post $post){
-    return view('post',[
-      'post' => $post,
+Route::get('/post/{post}', function (Post $post) {
+    return view('post', [
+        'post' => $post,
     ]);
 });
-//Route::get('/post/{post:slug}', function( Post $post){
-Route::get('/category/{category:slug}', function(Category $category){
-    return view ('posts', [
-        'posts'=> $category->posts,
-    ]); 
-});
-     
 
+Route::get('/category/{category:slug}', function (Category $category) {
+    return view('posts', [
+        'posts' => $category->posts,
+    ]);
+});
