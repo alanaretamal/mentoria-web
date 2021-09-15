@@ -15,12 +15,12 @@
                     </a>
                 </h1>
                 <p>
-                    By <a href="#">Alana Retamal</a>  In
+                    By <a href="#">Alana Retamal F</a>  In
                     <a href="/category/{{$post->category->slug}}">
                         {{$post->category->name}}
                     </a>
                 </p>
-                <p><?= $post->resumen ?></p>+
+                <p><?= $post->resumen ?></p>
             </article>
         @endforeach
     @else
