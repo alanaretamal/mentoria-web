@@ -15,7 +15,7 @@
                     </a>
                 </h1>
                 <p>
-                    By <a href="#">Alana Retamal F</a>  In
+                    By <a href="#">{{ $post->user->name }}</a> in 
                     <a href="/category/{{$post->category->slug}}">
                         {{$post->category->name}}
                     </a>
