@@ -1,31 +1,28 @@
 <?php
 
-namespace App\Models;
+namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Post;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class Post extends Model
+class PostFactory extends Factory
 {
-    // Traits
-    use HasFactory;
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Post::class;
 
-    //public $fillable = ['title', 'resumen', 'body'];
-    protected $guarded = ['id'];
-
-    public function getRouteKeyName()
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
     {
-        return 'slug';
-    }
-
-    // hasOne, hasMany, belongsTo, belongsToMany
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return [
+            //
+        ];
     }
 }
