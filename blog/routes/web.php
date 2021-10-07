@@ -23,7 +23,8 @@ Route::get('/', function () {
         'posts' => Post::latest('published_at')
         ->with(['category','author'])
         ->get(),
-        'categories'=> Category::all()
+        'categories'=> Category::all(),
+        'test'=>'bla bla'
     ]);
 });
 
