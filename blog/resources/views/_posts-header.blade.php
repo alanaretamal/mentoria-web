@@ -15,7 +15,13 @@
             <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
                 <!--  Category -->
                 <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-                    <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
+               <div x-data="{show:false}">
+                  <button @click="alert('hola')">Category</button>
+                   <a href="#" x-show="show">One</a>
+                   <a href="#"x-show="show">Two</a>
+                   <a href="#"x-show="show">Three</a>
+               </div>
+                <!--    <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
                         <option value="category" disabled selected>Category
                         </option>
                         <option value="personal">Personal</option>
@@ -30,7 +36,7 @@
                             <path fill="#222"
                                   d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z"></path>
                         </g>
-                    </svg>
+                    </svg> -->
                 </div>
 
                 <!-- Other Filters -->
