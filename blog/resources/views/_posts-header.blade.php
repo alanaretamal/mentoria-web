@@ -37,11 +37,12 @@
                 <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
                     <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
                         <option value="category" disabled selected>Other Filters
+                           Category
                         </option>
-                        <option value="foo">Foo
-                        </option>
-                        <option value="bar">Bar
-                        </option>
+
+                        @foreach($categories as $category)
+                        <option value="{{$category->slug}}">{{$category->name}}</option>
+                        @endforeach
                     </select>
 
                     <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22"
