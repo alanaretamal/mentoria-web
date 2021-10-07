@@ -18,12 +18,10 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    \Illuminate\Support\Facades\DB::listen(function ($query) {
-        logger($query->sql, $query->bindings);
-    });
-
     return view('posts', [
-        'posts' => Post::with('category')->get()
+        'posts' => Post::lastest('published_at')
+        ->with('category')
+        ->get()
     ]);
 });
 
