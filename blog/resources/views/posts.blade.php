@@ -1,3 +1,3 @@
-<x-layout content="Hola SEGIC!">
+<x-layout content="Hola Segic">
 
 </x-layout>
