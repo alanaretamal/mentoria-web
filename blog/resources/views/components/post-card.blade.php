@@ -9,7 +9,6 @@
         <div class="mt-8 flex flex-col justify-between">
             <header>
                 <div class="space-x-2">
-                  
                     <x-category-button :post="$post" />
                 </div>
 
