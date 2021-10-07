@@ -1,3 +1,4 @@
+@props(['post'])
 <article class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
@@ -14,7 +15,7 @@
 
                 <div class="mt-4">
                     <h1 class="text-3xl">
-                        This is a big title and it will look great on two or even three lines. Wooohoo!
+                      {{$post->title}}
                     </h1>
 
                     <span class="mt-2 block text-gray-400 text-xs">
@@ -25,9 +26,7 @@
 
             <div class="text-sm mt-2">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                {{$post->resumen}}
                 </p>
 
                 <p class="mt-4">
