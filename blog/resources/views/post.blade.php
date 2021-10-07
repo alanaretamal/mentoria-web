@@ -1,5 +1,4 @@
 <x-layout>
-
     <section class="px-6 py-8">
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
@@ -13,7 +12,7 @@
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
-                            <h5 class="font-bold">Lary Laracore</h5>
+                            <h5 class="font-bold">{{ $post->author->name}}</h5>
                             <h6>Mascot at SEGIC</h6>
                         </div>
                     </div>
@@ -37,16 +36,17 @@
                         </a>
 
                         <div class="space-x-2">
-                            <a href="#"
+                            <!-- <a href="/category/{{$post->category->slug}}"
                                 class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
                                 style="font-size: 10px">
-                                {{ $post->category->name }}
-                            </a>
+                                {{ $post->category->name}}
+                            </a> -->
+                            <x-category-button :category="$post->category" />
                         </div>
                     </div>
 
                     <h1 class="font-bold text-3xl lg:text-4xl mb-10">
-                        {{ $post->title }}
+                        {{$post->title}}
                     </h1>
 
                     <div class="space-y-4 lg:text-lg leading-loose">
@@ -55,6 +55,5 @@
                 </div>
             </article>
         </main>
-
     </section>
 </x-layout>
