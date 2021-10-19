@@ -14,8 +14,8 @@
 
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
             <div x-data="{ show : false}">
-                <button @click="show = !show" class="py-2 pl-3 pr-9 text-sm font-semibold inline-flex">
-                    Category
+                <button @click="show = !show" class="py-2 pl-3 pr-9 text-sm font-semibold w-32 inline-flex">
+                    Categories
                     <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22" height="22" viewBox="0 0 22 22">
                         <g fill="none" fill-rule="evenodd">
                             <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
@@ -28,9 +28,9 @@
 
                 </button>
                 <div x-show="show" class="py-2 absolute bg-gray-100 w-full mt-2 rounded-x1 z-50 text-left px-3 text-sm" style="display:none;">
-                    <a href="#" class="block text-left px-3 text-sm leading hover:bg-blue-500 hover:text-white">One</a>
-                    <a href="#" class="block text-left px-3 text-sm leading hover:bg-blue-500 hover:text-white">Two</a>
-                    <a href="#" class="block text-left px-3 text-sm leading hover:bg-blue-500 hover:text-white">Three</a>
+                    <a href="#" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white">One</a>
+                    <a href="#" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white">Two</a>
+                    <a href="#" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white">Three</a>
                 </div>
 
             </div>
