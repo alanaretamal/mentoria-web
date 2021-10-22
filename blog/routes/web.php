@@ -1,11 +1,10 @@
 <?php
 
 use App\Models\Post;
-use App\Models\User;
-//use Illuminate\Support\Facades\File;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
-//use Spatie\YamlFrontMatter\YamlFrontMatter;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,40 +16,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/', function () {   
+Route::get('/', function () {
     return view('posts', [
-      'posts' => Post::latest('published_at')
-      ->with(['category', 'author'])
-      ->get() ,
-       'categories' => Category::all()
-     
-     ])->name('home');
-});
+        'posts' => Post::latest('published_at')
+            ->with(['category', 'author'])
+            ->get(),
+        'categories' => Category::all(),
+    ]);
+})->name('home');
 
-
-Route::get('/post/{post}', function( Post $post){
-    return view ('post', [
-        'post'=> $post
+Route::get('/post/{post}', function (Post $post) {
+    return view('post', [
+        'post' => $post,
     ]);
 });
 
-Route::get('/category/{category:slug}', function( Category $category){
-    
-    return view ('posts', [
-        'posts'=> $category->posts->load(['category' , 'author']),
+Route::get('/category/{category:slug}', function (Category $category) {
+    return view('posts', [
+        'posts' => $category->posts->load(['category', 'author']),
         'categories' => Category::all(),
         'currentCategory' => $category,
     ]);
 });
 
-Route::get('/author/{author}', function( User $author){
-    
-    return view ('posts', [
-        'posts'=> $author->posts->load(['category' , 'author']),
+Route::get('/author/{author}', function (User $author) {
+    return view('posts', [
+        // eager loading (load, with)
+        // por defecto es lazy loading
+        'posts' => $author->posts->load(['category', 'author']),
+        'categories' => Category::all(),
     ]);
 });
-
-
-     
-
