@@ -21,6 +21,14 @@ class Post extends Model
 
     //hasOne , hasMany , belongsTo , belongsToMany
     public function scopeFilter($query,array $filters){
+
+        $query->when(
+        isset($filters['search']),
+        fn($query,$search)=>
+        $query->where('title','like',"%$search%")
+            ->orwhere('resumen','like',"%$search%")
+        );
+
         if(isset($filters['search'])){
            return $query->where('title','like','%'.$filters('search').'%')
             ->orwhere('resumen','like','%'.$filters('search').'%');
