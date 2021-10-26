@@ -14,13 +14,18 @@ class Post extends Model
     //public $fillable = ['title', 'resumen' , 'body'];
 
     protected $guarded = ['id'];
-
+    public $with=['category','author'];
     public function  getRouteKeyName(){
         return 'slug';
     }
 
     //hasOne , hasMany , belongsTo , belongsToMany
-
+    public function scopeFilter($query,array $filters){
+        if(isset($filters['search'])){
+           return $query->where('title','like','%'.$filters('search').'%')
+            ->orwhere('resumen','like','%'.$filters('search').'%');
+          }
+    }
     public function category(){
         return $this->belongsTo(Category::class);
     }
