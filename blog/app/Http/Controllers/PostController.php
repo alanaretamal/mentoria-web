@@ -15,7 +15,8 @@ class PostController extends Controller
             ->filter(request(['search']))
             ->get(),
             'categories' => Category::all(),
-            'currentCategory' => Category::where('slug',request('category'))->first(),
+            'currentCategory' => 
+              request('category')!==null ? Category::where('slug',request('category'))->first():null,
         ]);
     }
     public function show(Post $post)
