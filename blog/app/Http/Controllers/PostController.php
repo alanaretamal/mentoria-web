@@ -12,7 +12,7 @@ class PostController extends Controller
     {    
         return Post::latest('published_at')
             ->filter(request(['search','category']))
-            ->paginate();
+            ->paginate(5);
 
             /* 'categories' => Category::all(),
             'currentCategory' => 
